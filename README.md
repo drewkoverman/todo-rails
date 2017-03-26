@@ -1,24 +1,35 @@
-# README
+# Rails Todo Application
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a Ruby on Rails Todo application for WEBD435
 
-Things you may want to cover:
+## Installation
 
-* Ruby version
+### Clone the Respository
 
-* System dependencies
+```
+git clone https://github.com/drewkoverman/todo-rails.git 
+```
 
-* Configuration
+### Go to the directory
+```
+cd todo
+```
 
-* Database creation
+### Install bundle
 
-* Database initialization
+```
+install bundle
+```
 
-* How to run the test suite
+### Run database Migration
 
-* Services (job queues, cache servers, search engines, etc.)
+```
+rails db:migrate
+```
 
-* Deployment instructions
+### Start Rails Server
+```
+rails s or rails server
+```
 
-* ...
+Go to http://localhost:3000
