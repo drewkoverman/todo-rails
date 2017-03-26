@@ -1,0 +1,99 @@
+<h2>Edit <%= resource_name.to_s.humanize %></h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="field">
+    <%= f.label :fname %><br />
+    <%= f.text_field :fname, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :lname %><br />
+    <%= f.text_field :lname %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true %>
+  </div>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+    <%= f.password_field :password, autocomplete: "off" %>
+    <% if @minimum_password_length %>
+      <br />
+      <em><%= @minimum_password_length %> characters minimum</em>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+    <%= f.password_field :current_password, autocomplete: "off" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Update" %>
+  </div>
+<% end %>
+
+<h3>Cancel my account</h3>
+
+<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+
+<%= link_to "Back", :back %>
+
+%div.col-md-10.col-md-offset-2.col-xs-offset-2
+  %div.container-fluid
+    %div.row.row-eq-height.equal-col
+      %div.col-md-3.col-sm-4.palette.palette-clouds.user-settings
+        %div.list-group
+          %ul.nav
+            %li.list-group-item.active
+              %a{:href => '#info', ':data-toggle' => 'tab', :id => 'info-btn'}
+                %i.fa.fa-info-circle
+                User Info
+            %li.list-group-item
+              %a{:href => '#posts', ':data-toggle' => 'tab', :id => 'post-btn'}
+                %i.fa.fa-check-square-o
+                To-Do Tickets
+      %div.col-md-9.col-sm-8
+        %div.tab-content
+          %div{:class => 'tab-pane fade active in', :id => 'info'}
+            %header
+              %h3.page-header
+                %a{:href => '', :class => 'btn btn-default btn-sm default'}
+                  %i.fa.fa-pencil
+                  Edit
+            %br
+            %ul.list-group.view
+              %li.list-group-item
+                %label Name
+                %span
+                  = current_user.fname
+                  = current_user.lname
+              %li.list-group-item
+                %label Email Address
+                %span
+                  = current_user.email
+              %li.list-group-item
+                %label Password
+                %span
+                  ******
+          %div{:class => 'tab-pane fade', :id => 'posts'}
+            %header
+              %h3.page-header
+                %a{:href => '', :class => 'btn btn-default btn-sm toogle'}
+                  %i.fa.fa-pencil
+                  Edit
+                To-Do Tickets
+            %div.row

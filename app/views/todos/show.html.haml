@@ -1,0 +1,29 @@
+%div.col-md-10.col-md-offset-2.col-sm-9.col-sm-offset-3.col-xs-8.col-xs-offset-4
+  %div.row
+    %div.col-md-12
+    %h5.page-header
+      - if @todo.user == current_user
+        = link_to '<i class="fa fa-pencil"></i> Edit'.html_safe, edit_todo_path(@todo), class: 'btn btn-default btn-sm toogle', :style => "float:right"
+      = @todo.title
+    %br
+    %ul.list-group.view
+      %li.list-group-item
+        %label Title
+        %span= @todo.title
+      %li.list-group-item
+        %label Description
+        %span= @todo.desc
+      %li.list-group-item
+        %label Tags
+        %span.bootstrap-tagsinput
+          - tags = @todo.tags
+          - tags = tags.split()
+          - tags.each do |tag|
+            %span.tag.label.label-info= tag
+      %li.list-group-item
+        %label Status
+        %span.bootstrap-tagsinput
+          - status = @todo.status
+          - status = status.split()
+          - status.each do |stat|
+            %span.tag.label.label-info= stat

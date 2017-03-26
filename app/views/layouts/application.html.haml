@@ -1,0 +1,37 @@
+!!!
+%html
+  %head
+    %title todo
+    = stylesheet_link_tag    "application", media: "all"
+    = csrf_meta_tags
+  %body
+  %section
+    %div.container
+      %div.row
+        %div.col-md-2.sidebar
+          %a{:href => '/'}
+            %span.nav-logo-icon T
+            - if user_signed_in?
+              %p.text-center.asphalt
+                Welcome,
+                = current_user.fname
+                = current_user.lname
+          %ul.nav.nav-sidebar
+            - if user_signed_in?
+              %li.active
+                %a{href: "/todos/new"}
+                  Add Todo
+                  %i.fa.fa-lg.fa-plus-circle.hidden-xs
+              %li
+                =link_to 'Edit Profile <i class="fa fa-lg fa-user hidden-xs"></i>'.html_safe, edit_user_registration_path
+              %li
+                =link_to 'Log Out <i class="fa fa-lg fa-sign-out hidden-xs"></i>'.html_safe, destroy_user_session_path, :method => :delete
+            - else
+              %li.active
+                =link_to 'Login <i class="fa fa-lg fa-sign-in hidden-xs"></i>'.html_safe, new_user_session_path
+              %li
+                =link_to 'Sign Up <i class="fa fa-lg fa-pencil-square-o hidden-xs"></i>'.html_safe, new_user_registration_path
+          %p.text-center
+            &copy; 2017 | WEBD435
+        = yield
+  = javascript_include_tag "application"

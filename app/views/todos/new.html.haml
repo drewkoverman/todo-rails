@@ -1,0 +1,31 @@
+%div.col-md-10.col-md-offset-2.col-sm-9.col-sm-offset-3.col-xs-8.col-xs-offset-4
+  %div.row
+    %div.col-md-12
+      = form_tag '/todos' do
+        = field_set_tag do
+          %div.col-md-12
+            %h5.page-header Edit a To-Do Request
+            %br
+            - if @todo.errors.any?
+              %div.alert.alert-warning
+                %h5= pluralize(@todo.errors.count, "error")
+                %ul
+                  - @todo.errors.full_messages.each do |message|
+                    %li= message
+            %div.col-md-12
+              %div.form-group
+                = label_tag :title, 'Title'
+                = text_field_tag 'todo[title]', '', class: 'form-control', :placeholder => 'Add a Title'
+              %div.form-group
+                = label_tag :desc, 'Description'
+                = text_area_tag 'todo[desc]', '', rows: '6', class: 'form-control', :placeholder => 'Enter a Description'
+            %div.col-md-6
+              %div.form-group
+                = label_tag :tags, 'Tags'
+                = text_field_tag 'todo[tags]', '', class: 'form-control', :placeholder => 'Tags'
+            %div.col-md-6
+              %div.form-group
+                = label_tag :status, 'Status'
+                = text_field_tag 'todo[status]', '', class: 'form-control', :placeholder => 'Status'
+            %div.col-md-12
+              = submit_tag 'Add Todo', class: 'btn btn-inverse'

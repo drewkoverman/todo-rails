@@ -1,0 +1,25 @@
+%div.col-md-10.col-md-offset-2.col-sm-9.col-sm-offset-3.col-xs-8.col-xs-offset-4
+  %h5.page-header Recent Todos&hellip;
+  %div.row
+  - if @todos.empty?
+    %div.col-md-12
+      %div.alert.alert-danger There are no todos!
+  - else
+    - @todos.each do |todo|
+      %div.col-md-4
+        %div.grid
+          %p.icon
+            = link_to "<i class='fa fa-list fa-lg'></i>".html_safe, todo
+            - if todo.user == current_user
+              = link_to "<i class='fa fa-pencil fa-lg'></i>".html_safe, edit_todo_path(todo)
+              = link_to "<i class='fa fa-trash-o fa-lg'></i>".html_safe, todo, method: :delete
+          %h4.title= todo.title[0..20] << '..'
+          %p= todo.desc[0..40] << '...'
+          %span.line
+          %h5
+            = todo.user.fname
+            = todo.user.lname
+          %p.bootstrap-tagsinput
+            - tags = todo.tags.split(" ")
+            - tags.each do |value|
+              %span.tag.label.label-info= value
