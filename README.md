@@ -18,7 +18,7 @@ cd todo
 ### Install bundle
 
 ```
-install bundle
+bundle install
 ```
 
 ### Run database Migration
